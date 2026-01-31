@@ -1,0 +1,330 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lake City Express | Transport & Logistics</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="stylesheet" href="{% static 'transport/style.css' %}">
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-left">
+        <span>📍 Transport Nagar, Udaipur</span>
+        <span class="dot">•</span>
+        <span>Serving Udaipur → Gujarat → All India</span>
+      </div>
+      <div class="topbar-right">
+        <a href="tel:8290021426">📞 8290021426</a>
+        <span class="dot">•</span>
+        <a href="tel:7023415972">📞 7023415972</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="wrap nav-wrap">
+      <a class="brand" href="#top">
+        <span class="brand-icon">🚛</span>
+        <span class="brand-text">
+          <span class="brand-title">Lake City Express</span>
+          <span class="brand-sub">Transport & Logistics</span>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#fleet" class="nav-link">Fleet</a>
+        <a href="#why" class="nav-link">Why Us</a>
+        <a href="#contact" class="nav-link nav-cta">Get Quote</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" class="m-link">About</a>
+      <a href="#services" class="m-link">Services</a>
+      <a href="#fleet" class="m-link">Fleet</a>
+      <a href="#why" class="m-link">Why Us</a>
+      <a href="#contact" class="m-link m-cta">Get Quote</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="wrap hero-wrap">
+      <div class="hero-left">
+        <div class="badge">Trusted Transport Partner • Rajasthan & India</div>
+        <h1>
+          Reliable & Fast Transport<br>
+          <span class="accent">Udaipur to Gujarat</span> & All India
+        </h1>
+        <p class="hero-sub">
+          Safe handling, on-time delivery and all types of trucks available for every load size.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">Get a Quote</a>
+          <a class="btn ghost" href="tel:8290021426">Call Now</a>
+          <a class="btn whatsapp" href="https://wa.me/918290021426" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-card">
+            <div class="trust-num">24×7</div>
+            <div class="trust-txt">Support</div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-num">Fast</div>
+            <div class="trust-txt">Delivery</div>
+          </div>
+          <div class="trust-card">
+            <div class="trust-num">Safe</div>
+            <div class="trust-txt">Handling</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-panel">
+          <h3>Quick Quote</h3>
+
+          {% if error %}
+            <div class="alert error">❌ {{ error }}</div>
+          {% endif %}
+          {% if success %}
+            <div class="alert success">✅ Inquiry sent successfully!</div>
+          {% endif %}
+
+          <form id="quoteForm" method="POST" class="quote-form">
+  {% csrf_token %}
+
+  <!-- Name -->
+  <div class="field">
+    <label>Your Name</label>
+    <input type="text" name="name" placeholder="Enter your name" required>
+  </div>
+
+  <!-- Phone -->
+  <div class="field">
+    <label>Phone Number</label>
+    <input type="tel" name="phone" placeholder="10-digit mobile number" maxlength="10" required>
+    <small class="hint">Only 10-digit Indian mobile numbers</small>
+  </div>
+
+  <!-- Pickup + Drop -->
+  <div class="form-row">
+    <input type="text" name="pickup_city" placeholder="Pickup City (e.g. Udaipur)" required>
+    <input type="text" name="drop_city" placeholder="Drop City (e.g. Ahmedabad)" required>
+  </div>
+
+  <!-- Load type -->
+  <div class="field">
+    <label>Load Type</label>
+    <input type="text" name="load_type" placeholder="e.g. Household, Marble, Furniture" required>
+  </div>
+
+  <!-- Message -->
+  <div class="field">
+    <label>Pickup & Drop Details</label>
+    <textarea name="message" placeholder="Example: Udaipur → Ahmedabad, 2 ton goods" required></textarea>
+  </div>
+
+  <button class="btn primary btn-full" type="submit">
+    Send Inquiry
+  </button>
+
+  <p id="jsMsg" class="jsmsg"></p>
+</form>
+
+          <div class="mini-contact">
+            <div><b>Owner:</b> Bhagchand Khatik</div>
+            <div><b>Phone:</b> 8290021426, 7023415972</div>
+            <div><b>Address:</b> Transport Nagar, Udaipur (Raj.)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About Lake City Express</h2>
+        <p>
+          We are a Udaipur-based transport company providing reliable goods transport services
+          across Rajasthan, Gujarat and all over India — with a focus on safety, speed and transparency.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h4>📦 Goods Transport</h4>
+          <p>Full load & part load solutions for businesses and individuals.</p>
+        </div>
+        <div class="about-card">
+          <h4>🧭 All India Routes</h4>
+          <p>From Udaipur to Gujarat and beyond — nationwide coverage.</p>
+        </div>
+        <div class="about-card">
+          <h4>🛡️ Safe Handling</h4>
+          <p>Careful loading/unloading and secure transit practices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section alt" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our Services</h2>
+        <p>Transport solutions designed for speed, safety and affordability.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">🚚 Truck & Tempo Services</div>
+        <div class="card">📦 Goods Transport</div>
+        <div class="card">🚛 Local & Outstation Delivery</div>
+        <div class="card">⚡ Express Delivery</div>
+        <div class="card">🏢 Warehouse Support</div>
+        <div class="card">📮 Courier & Parcel Service</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fleet -->
+  <section class="section" id="fleet">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our Truck Fleet</h2>
+        <p>All types of trucks available for every transport requirement.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">🚚 Mini Truck / Pickup</div>
+        <div class="card">🚛 Tempo & 407</div>
+        <div class="card">🚛 14 / 17 / 19 Feet Trucks</div>
+        <div class="card">🚛 20 / 22 Feet Containers</div>
+        <div class="card">🚛 32 Feet Multi-Axle Truck</div>
+        <div class="card">🚛 Open & Closed Body Trucks</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="section alt" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why Choose Us</h2>
+        <p>Because transport needs trust, timely delivery and clear pricing.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card"><span>✅</span> On-time Delivery</div>
+        <div class="why-card"><span>✅</span> Affordable Pricing</div>
+        <div class="why-card"><span>✅</span> Experienced Drivers</div>
+        <div class="why-card"><span>✅</span> 24×7 Support</div>
+        <div class="why-card"><span>✅</span> Safe Handling</div>
+        <div class="why-card"><span>✅</span> All India Service</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Quote -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section-head center">
+        <h2>Get a Quote</h2>
+        <p>Fill details and we will contact you quickly.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Contact Details</h3>
+          <p><b>Owner:</b> Rohan Chauhan</p>
+          <p><b>Phones:</b> 8290021426, 7023415972</p>
+          <p><b>Address:</b> Transport Nagar, Udaipur (Raj.)</p>
+
+          <div class="contact-actions">
+            <a class="btn ghost" href="tel:8290021426">Call Now</a>
+            <a class="btn whatsapp" href="https://wa.me/918290021426" target="_blank" rel="noreferrer">WhatsApp</a>
+          </div>
+
+          <div class="note">
+            Tip: Mention pickup/drop city and load type for faster quotation.
+          </div>
+        </div>
+
+        <div class="contact-card form-card">
+          <h3>Quote Form</h3>
+
+          {% if error %}
+            <div class="alert error">❌ {{ error }}</div>
+          {% endif %}
+          {% if success %}
+            <div class="alert success">✅ Inquiry sent successfully!</div>
+          {% endif %}
+
+          <form method="POST" class="quote-form" id="quoteForm2">
+            {% csrf_token %}
+            <div class="two">
+              <div class="field">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Your Name" required>
+              </div>
+              <div class="field">
+                <label>Phone</label>
+                <input type="tel" name="phone" class="phone2" placeholder="10-digit phone" maxlength="10" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Message</label>
+              <textarea name="message" placeholder="Pickup & Drop Details" required></textarea>
+            </div>
+
+            <button class="btn primary btn-full" type="submit">Send Inquiry</button>
+            <p class="jsmsg" id="jsMsg2"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap footer-wrap">
+      <div class="footer-left">
+        <div class="footer-brand">🚛 Lake City Express</div>
+        <div class="footer-sub">Transport Nagar, Udaipur • Udaipur → Gujarat → All India</div>
+      </div>
+      <div class="footer-right">
+        <a href="#top">Back to Top ↑</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      © 2026 Lake City Express | All Rights Reserved
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="{% static 'transport/script.js' %}"></script>
+</body>
+</html>
